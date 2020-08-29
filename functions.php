@@ -13,8 +13,8 @@ function query($query){
 
 function tambah($data){
     global $conn;
+    $kategori = htmlspecialchars($data["kategoriid"]);
     $nama = htmlspecialchars($data["nama"]);
-    $kategori = htmlspecialchars($data["kategori"]);
     $harga = htmlspecialchars($data["harga"]);
     $deskripsi = htmlspecialchars($data["deskripsi"]);
     $gambar = upload();
@@ -23,7 +23,7 @@ function tambah($data){
     }
 
     $query = "INSERT INTO barang VALUES
-    ('','$nama','$kategori','$harga','$deskripsi','$gambar')";
+    ('','$kategori','$nama','$harga','$deskripsi','$gambar')";
 
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
@@ -82,12 +82,12 @@ function hapus($id){
 function ubah($data){
     global $conn;
     $id = $data["id"];
+    $kategori = htmlspecialchars($data["kategoriid"]);
     $nama = htmlspecialchars($data["nama"]);
-    $kategori = htmlspecialchars($data["kategori"]);
     $harga = htmlspecialchars($data["harga"]);
     $deskripsi = htmlspecialchars($data["deskripsi"]);
     
-    //jika tidak upload gambar
+    //jika ubah gambar
     if ($_FILES["gambar"]["error"] === 0) {
         $gambar = upload();
     }else{
@@ -95,9 +95,8 @@ function ubah($data){
     }
 
     $query = "UPDATE barang SET 
+                                kategoriid = '$kategori',
                                 nama = '$nama',
-                                kategori = '$kategori',
-                                harga = '$harga',
                                 harga = '$harga',
                                 deskripsi = '$deskripsi',
                                 gambar = '$gambar'

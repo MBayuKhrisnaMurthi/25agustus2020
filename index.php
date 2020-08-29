@@ -11,7 +11,8 @@ if (!isset($_SESSION['login'])) {
     if (isset($_POST["cari"])) {
         $barang = cari($_POST["katacari"]);
     } else {
-        $barang = query("SELECT * FROM barang");
+        $barang = query("SELECT barang.id, barang.nama, barang.harga, kategori.kategori FROM barang
+                        LEFT JOIN kategori ON kategori.kategoriid=barang.kategoriid");
     }
 ?>
 <html>

@@ -6,11 +6,13 @@ if (!isset($_SESSION['login'])) {
 }
 require "functions.php";
 
-//ambil data sesuai id
+//ambil data sesuai id disimpan didalam row assoc
 $id = $_GET["id"];
 $result = mysqli_query($conn, "SELECT * FROM barang WHERE id=$id");
-//disimpen di 1 row assoc
 $row = mysqli_fetch_assoc($result);
+
+//ambil kategori
+$kategori = query("SELECT * FROM kategori");
 
     if (isset($_POST["ubah"])) {
         if (ubah($_POST) > 0) {
@@ -56,7 +58,16 @@ $row = mysqli_fetch_assoc($result);
             <input name="nama" type="text" class="form-control" value="<?= $row["nama"] ?>" required>
         </div><div>
             <label>Kategori</label>
-            <input name="kategori" type="text" class="form-control" value="<?= $row["kategori"] ?>" required>
+                <select name="kategoriid" class="form-control">
+                    <?php
+                        foreach ($kategori as $ktg) {
+                            echo '<option value=
+                                            "' . $ktg['kategoriid'] . '" 
+                                            '.($row['kategoriid'] == $ktg['kategoriid'] ? 'selected' : '').
+                                            '>' . $ktg['kategori'] . '</option>';
+                        }
+                    ?>
+                </select>
         </div><div>
             <label>Harga</label>
             <input name="harga" type="text" class="form-control" value="<?= $row["harga"] ?>" required>

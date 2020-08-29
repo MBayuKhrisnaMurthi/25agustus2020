@@ -1,10 +1,12 @@
 <?php
 session_start();
+require "functions.php";
 //cek session
 if (!isset($_SESSION['login'])) {
     header("Location: login.php");
 }
-require "functions.php";
+    //ambil data kategori
+    $kategori = query("SELECT * FROM kategori");
 
     if (isset($_POST["tambah"])) {
 
@@ -45,13 +47,18 @@ require "functions.php";
         </div>
         <div>
             <label>Nama</label>
-            <input name="nama" type="text" class="form-control" required>
+            <input name="nama" type="text" class="form-control" autocomplete="off" required>
         </div><div>
             <label>Kategori</label>
-            <input name="kategori" type="text" class="form-control" required>
+                <select name="kategoriid" class="form-control">
+                    <?php foreach ($kategori as $ktg) {
+                        //kategori id > kategori nama
+                        echo '<option value="' . $ktg['kategoriid'] . '">' . $ktg['kategori'] . '</option>';
+                    } ?>
+                </select>
         </div><div>
             <label>Harga</label>
-            <input name="harga" type="text" class="form-control" required>
+            <input name="harga" type="text" class="form-control" autocomplete="off" required>
         </div><div>
             <label>Deskripsi</label><br>
             <textarea name="deskripsi" rows="4" cols="162" required></textarea>
