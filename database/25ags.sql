@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2020 at 02:48 PM
+-- Generation Time: Aug 30, 2020 at 10:44 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -43,7 +43,8 @@ CREATE TABLE `barang` (
 INSERT INTO `barang` (`id`, `kategoriid`, `nama`, `harga`, `deskripsi`, `gambar`) VALUES
 (11, 1, 'Buku web design', '40000', 'buku it yang berisi pemahaman tentang web base', '5f49e1794ac91.jpg'),
 (23, 2, 'sejarah indonesia', '50000', 'sejarah negara indonesia', '5f4a4a37a68e6.jpg'),
-(24, 3, 'Matematika 3', '250000', 'matematika untuk kelas 3', '5f4a4b72a2c8f.png');
+(24, 3, 'Matematika 3', '250000', 'matematika untuk kelas 3', '5f4a4b72a2c8f.png'),
+(27, 4, 'buku mudah bahasa inggris', '100000', 'buku cara mudah belajar bahasa inggris', '5f4b663056ba2.jpg');
 
 -- --------------------------------------------------------
 
@@ -63,7 +64,8 @@ CREATE TABLE `kategori` (
 INSERT INTO `kategori` (`kategoriid`, `kategori`) VALUES
 (1, 'IT'),
 (2, 'Sejarah'),
-(3, 'Matematika');
+(3, 'Matematika'),
+(4, 'Inggris');
 
 -- --------------------------------------------------------
 
@@ -82,8 +84,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`) VALUES
-(6, 'mbayukrisnamurti@yahoo.co.id', '$2y$10$mJ0BLQl2eSeNMjIWBLAFNOnFsKP1/sGDsKMZVm71O4EN7zSMSuHEO'),
-(7, 'jagokandang1204@gmail.com', '$2y$10$fNhof/mPJfCqnBmsNhmfJeCa1mAL4AXEs0/9vf52qLoVtUMl6HAVm');
+(6, 'mbayukrisnamurti@yahoo.co.id', '$2y$10$mJ0BLQl2eSeNMjIWBLAFNOnFsKP1/sGDsKMZVm71O4EN7zSMSuHEO');
 
 --
 -- Indexes for dumped tables
@@ -116,19 +117,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `kategoriid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kategoriid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
