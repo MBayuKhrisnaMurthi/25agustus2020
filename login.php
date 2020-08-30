@@ -62,7 +62,8 @@ require "functions.php";
 </style>
 </head>
 <body>
-<h2>Login</h2><br><br>
+<br><br>
+<h2 align="center">Login</h2><br><br>
 <div class="table">
 <form action="" method="POST">
   <?php if (isset($error)) : ?>

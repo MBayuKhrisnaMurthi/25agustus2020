@@ -116,8 +116,8 @@ function cari($katacari){
 function daftar($data){
     global $conn;
     $email = $data["email"];
-    $password = $data["password"];
-    $password2 = $data["password2"];
+    $password = mysqli_real_escape_string($conn, $data["password"]);
+    $password2 = mysqli_real_escape_string($conn, $data["password2"]);
     $query = "SELECT email FROM users WHERE email='$email'";
 
     //cek username sudah ada atau belum
@@ -138,6 +138,7 @@ function daftar($data){
     }
 
     //enskrip password
+    //password = md5($password)
     $password = password_hash($password, PASSWORD_DEFAULT);
     
     //masukkan kedalam database

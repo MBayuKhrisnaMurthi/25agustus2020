@@ -25,7 +25,8 @@ if (isset($_POST["daftar"])) {
 </style>
 </head>
 <body>
-<h2>Register</h2><br><br>
+<br><br>
+<h2 align="center">Register</h2><br><br>
 <div class="table">
     <form action="" method="POST">
     <div class="form-group">
