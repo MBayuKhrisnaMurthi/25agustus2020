@@ -107,9 +107,15 @@ function ubah($data){
 }
 
 function cari($katacari){
-    $query = "SELECT * FROM barang WHERE
+    $query = "SELECT barang.id, barang.nama, barang.harga, kategori.kategori FROM barang
+                LEFT JOIN kategori ON kategori.kategoriid=barang.kategoriid WHERE
                 nama LIKE '%$katacari%' OR
-                kategori LIKE '%$katacari%'";
+                kategori LIKE '%$katacari%' OR
+                harga LIKE '%$katacari%'";
+
+    // $query = "SELECT * FROM barang WHERE
+    //             nama LIKE '%$katacari%' OR
+    //             kategori LIKE '%$katacari%'";
     return query($query);
 }
 
@@ -144,6 +150,37 @@ function daftar($data){
     //masukkan kedalam database
     $queryinput = "INSERT INTO users VALUES('', '$email', '$password')";
     mysqli_query($conn, $queryinput);
+    return mysqli_affected_rows($conn);
+}
+
+// kategori
+function tambahkategori($data){
+    global $conn;
+    $kategori = htmlspecialchars($data["kategori"]);
+
+    $query = "INSERT INTO kategori VALUES
+    ('','$kategori')";
+
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+function ubahkategori($data){
+    global $conn;
+    $id = $data["kategoriid"];
+    $kategori = htmlspecialchars($data["kategori"]);
+
+    $query = "UPDATE kategori SET 
+                                kategori = '$kategori'
+                                WHERE kategoriid = $id";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+function hapuskategori($id){
+    global $conn;
+    $query = "DELETE FROM kategori WHERE kategoriid = $id";
+    mysqli_query($conn,$query);
     return mysqli_affected_rows($conn);
 }
 ?>
